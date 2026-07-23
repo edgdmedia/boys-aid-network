@@ -1,13 +1,17 @@
+import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowLeft } from 'lucide-react';
 
 interface PageHeroProps {
   eyebrow: string;
   title: string;
   subtitle: string;
   img: string;
+  backLink?: string;
+  backText?: string;
 }
 
-export default function PageHero({ eyebrow, title, subtitle, img }: PageHeroProps) {
+export default function PageHero({ eyebrow, title, subtitle, img, backLink, backText }: PageHeroProps) {
   return (
     <section className="relative bg-navy-800 overflow-hidden min-h-[300px] flex items-center justify-center">
       {/* Background Image */}
@@ -27,6 +31,14 @@ export default function PageHero({ eyebrow, title, subtitle, img }: PageHeroProp
 
       {/* Content */}
       <div className="relative max-w-3xl mx-auto px-6 py-16 text-center flex flex-col items-center">
+        {backLink && backText && (
+          <Link
+            href={backLink}
+            className="inline-flex items-center gap-1.5 font-display font-bold text-[11px] uppercase tracking-widest text-red-500 hover:text-red-400 mb-6 transition-colors"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" /> Back to {backText}
+          </Link>
+        )}
         <div className="font-display font-bold tracking-[0.18em] uppercase text-red-500 text-[12.5px] mb-4.5">
           {eyebrow}
         </div>
