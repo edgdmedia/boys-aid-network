@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { blogPosts } from '@/data/content';
+import PageHero from '@/components/PageHero';
+import Share from '@/components/Share';
 import CTA from '@/components/CTA';
 
 interface BlogPostPageProps {
@@ -28,37 +30,31 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="animate-ban-fade">
-      {/* Article Header */}
-      <section className="bg-navy-800 text-white py-16 md:py-24 relative select-none">
-        <div className="max-w-4xl mx-auto px-6 flex flex-col items-start relative z-10">
-          <Link
-            href="/impact"
-            className="inline-flex items-center gap-1.5 font-display font-bold text-[12px] uppercase tracking-wider text-red-500 hover:text-red-400 mb-6 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" /> Back to Impact &amp; Blog
-          </Link>
-
-          <div className="flex items-center gap-4 text-[12.5px] text-white/60 mb-4 font-semibold">
-            <span className="flex items-center gap-1.5">
-              <Calendar className="w-4 h-4 text-red-500" />
-              {post.date}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <User className="w-4 h-4 text-red-500" />
-              {post.author}
-            </span>
-          </div>
-
-          <h1 className="font-display font-black text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight">
-            {post.title}
-          </h1>
+      {/* Page Hero using post's featured image as background with metadata inside the banner */}
+      <PageHero
+        eyebrow="Blog Article"
+        title={post.title}
+        subtitle={post.summary}
+        img={post.img}
+        backLink="/impact"
+        backText="All Articles"
+      >
+        <div className="flex items-center justify-center gap-4 text-[13px] text-white/75 mt-3.5 font-semibold">
+          <span className="flex items-center gap-1.5">
+            <Calendar className="w-4 h-4 text-red-500" />
+            {post.date}
+          </span>
+          <span className="flex items-center gap-1.5">
+            <User className="w-4 h-4 text-red-500" />
+            {post.author}
+          </span>
         </div>
-      </section>
+      </PageHero>
 
       {/* Article Body */}
       <article className="bg-white py-16">
         <div className="max-w-3xl mx-auto px-6">
-          {/* Main Image */}
+          {/* Featured Image */}
           <div className="relative h-64 sm:h-[400px] w-full rounded-2xl overflow-hidden shadow-lg mb-10 select-none">
             <Image
               src={post.img}
@@ -105,6 +101,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               );
             })}
           </div>
+
+          {/* Social Share Widget positioned after the content */}
+          <div className="w-full mt-6">
+            <Share title={post.title} />
+          </div>
+
+          {/* Bottom Back Navigation */}
+          <Link
+            href="/impact"
+            className="inline-flex items-center gap-1.5 font-display font-bold text-[12px] uppercase tracking-wider text-red-600 hover:text-red-700 mt-6 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to Impact &amp; Blog
+          </Link>
         </div>
       </article>
 

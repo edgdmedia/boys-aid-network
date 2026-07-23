@@ -9,9 +9,10 @@ interface PageHeroProps {
   img: string;
   backLink?: string;
   backText?: string;
+  children?: React.ReactNode;
 }
 
-export default function PageHero({ eyebrow, title, subtitle, img, backLink, backText }: PageHeroProps) {
+export default function PageHero({ eyebrow, title, subtitle, img, backLink, backText, children }: PageHeroProps) {
   return (
     <section className="relative bg-navy-800 overflow-hidden min-h-[300px] flex items-center justify-center">
       {/* Background Image */}
@@ -46,6 +47,7 @@ export default function PageHero({ eyebrow, title, subtitle, img, backLink, back
         <h1 className="text-white font-display font-black text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight max-w-2xl">
           {title}
         </h1>
+        {children}
         <div className="w-14 h-1 bg-red-600 rounded-full mt-5.5 mb-5.5" />
         <p className="text-white/80 font-body text-[16px] sm:text-[17.5px] leading-relaxed max-w-xl">
           {subtitle}
