@@ -36,7 +36,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="animate-ban-fade">
+    <>
+      <div className="animate-ban-fade">
       {/* Hero Section */}
       <section className="relative bg-navy-800 overflow-hidden min-h-[500px] flex items-center">
         {/* Ken Burns Slideshow Background */}
@@ -423,6 +424,7 @@ export default function Home() {
 
       {/* Bottom CTA Block */}
       <CTA />
+    </div>
 
       {/* YouTube Video Modal */}
       {videoOpen && (
@@ -453,6 +455,6 @@ export default function Home() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
