@@ -105,7 +105,7 @@ export default function Home() {
               />
             </div>
             {/* Float badge */}
-            <div className="absolute -left-4 -bottom-6 bg-white rounded-xl p-4 shadow-xl flex items-center gap-3.5">
+            <div className="absolute -left-4 -bottom-6 bg-white rounded-xl p-4 shadow-xl hidden sm:flex items-center gap-3.5">
               <div className="font-display font-black text-3xl md:text-[34px] text-navy-800 leading-none">
                 500<span className="text-red-600">+</span>
               </div>

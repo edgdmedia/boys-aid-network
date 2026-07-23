@@ -157,7 +157,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer Overlay */}
       {mobileOpen && (
-        <div className="fixed inset-y-0 right-0 top-[73px] w-full max-w-sm z-50 bg-navy-900 flex flex-col p-6 overflow-y-auto border-l border-white/10 animate-ban-fade">
+        <div className="fixed inset-y-0 left-0 top-[73px] w-full max-w-md z-50 bg-navy-900 flex flex-col p-6 overflow-y-auto border-r border-white/10 animate-ban-fade">
           <nav className="flex flex-col gap-1">
             {[
               { label: 'Home', href: '/' },
