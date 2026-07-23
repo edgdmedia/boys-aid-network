@@ -157,38 +157,22 @@ export default function Navbar() {
 
       {/* Mobile Drawer Overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 top-[73px] bottom-0 z-50 bg-navy-900 flex flex-col p-6 overflow-y-auto animate-ban-fade">
+        <div className="fixed inset-y-0 right-0 top-[73px] w-full max-w-sm z-50 bg-navy-900 flex flex-col p-6 overflow-y-auto border-l border-white/10 animate-ban-fade">
           <nav className="flex flex-col gap-1">
-            {navLinks.map((link) => {
-              if (link.submenu) {
-                return (
-                  <div key={link.label} className="border-b border-white/10 pb-2">
-                    <div className="font-display font-bold text-white/50 text-[12px] tracking-widest uppercase mt-4 mb-2">
-                      {link.label}
-                    </div>
-                    <div className="flex flex-col gap-1 pl-3">
-                      {link.submenu.map((sub) => (
-                        <Link
-                          key={sub.label}
-                          href={sub.href}
-                          className={`font-display font-extrabold text-[20px] py-2 transition-colors ${
-                            pathname === sub.href ? 'text-red-500' : 'text-white hover:text-red-500'
-                          }`}
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                );
-              }
-
+            {[
+              { label: 'Home', href: '/' },
+              { label: 'Our Story', href: '/about' },
+              { label: "Founder's Note", href: '/about/founders-note' },
+              { label: 'Programs', href: '/programs' },
+              { label: 'Impact & Blog', href: '/impact' },
+              { label: 'Gallery', href: '/gallery' },
+            ].map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`font-display font-extrabold text-[24px] tracking-tight py-3.5 border-b border-white/8 transition-colors ${
+                  className={`font-display font-extrabold text-[22px] tracking-tight py-3.5 border-b border-white/8 transition-colors ${
                     isActive ? 'text-red-500' : 'text-white hover:text-red-500'
                   }`}
                 >
