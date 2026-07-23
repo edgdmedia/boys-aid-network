@@ -23,6 +23,18 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
   // Close mobile menu when pathname changes
   useEffect(() => {
     setMobileOpen(false);
@@ -45,12 +57,16 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200">
+    <header className={`sticky top-0 z-40 transition-colors duration-250 ${
+      mobileOpen
+        ? 'bg-navy-900 border-b border-white/10 text-white'
+        : 'bg-white/90 backdrop-blur-md border-b border-gray-200 text-navy-800'
+    }`}>
       <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
-            src="/images/Boys-Aid-Logo-1-Colour.png"
+            src={mobileOpen ? "/images/Boys-Aid-Logo-1-White.png" : "/images/Boys-Aid-Logo-1-Colour.png"}
             alt="Boys Aid Network"
             width={160}
             height={44}
@@ -129,7 +145,11 @@ export default function Navbar() {
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle Menu"
-          className="md:hidden inline-flex items-center justify-center w-11 h-11 border-none bg-navy-50 rounded-xl text-navy-800 hover:bg-navy-100 transition-colors cursor-pointer"
+          className={`md:hidden inline-flex items-center justify-center w-11 h-11 border-none rounded-xl transition-colors cursor-pointer ${
+            mobileOpen
+              ? 'bg-white/10 text-white hover:bg-white/15'
+              : 'bg-navy-50 text-navy-800 hover:bg-navy-100'
+          }`}
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -137,7 +157,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer Overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 top-[73px] z-50 bg-navy-900 flex flex-col p-6 overflow-y-auto animate-ban-fade">
+        <div className="fixed inset-0 top-[73px] bottom-0 z-50 bg-navy-900 flex flex-col p-6 overflow-y-auto animate-ban-fade">
           <nav className="flex flex-col gap-1">
             {navLinks.map((link) => {
               if (link.submenu) {
