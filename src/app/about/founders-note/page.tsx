@@ -17,8 +17,8 @@ export default function FoundersNote() {
       {/* Main content */}
       <section className="bg-white py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
-          {/* Left Column: Image and Details */}
-          <div className="md:col-span-4 flex flex-col items-center">
+          {/* Left Column: Image and Details (Sticky on desktop) */}
+          <div className="md:col-span-4 flex flex-col items-center md:sticky md:top-24">
             <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-xl max-w-sm">
               <Image
                 src="/images/Olufunke-Oyinlola.png"
