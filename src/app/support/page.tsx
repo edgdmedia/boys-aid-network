@@ -37,31 +37,31 @@ export default function Support() {
                 <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden font-display">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4 border-b border-white/5">
                     <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Account Name</span>
-                    <span className="font-extrabold text-[13.5px] text-left leading-normal">{bankDetails.accountName}</span>
+                    <span className="font-extrabold text-[13.5px] text-left sm:text-right flex-grow leading-normal">{bankDetails.accountName}</span>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4 border-b border-white/5">
                     <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Bank Name</span>
-                    <span className="font-extrabold text-[15px] text-left">{bankDetails.bankName}</span>
+                    <span className="font-extrabold text-[15px] text-left sm:text-right flex-grow">{bankDetails.bankName}</span>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4 border-b border-white/5">
                     <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Naira Account</span>
-                    <span className="font-mono font-extrabold text-[16px] text-red-400 text-left">{bankDetails.nairaAccount}</span>
+                    <span className="font-mono font-extrabold text-[16px] text-red-400 text-left sm:text-right flex-grow">{bankDetails.nairaAccount}</span>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4 border-b border-white/5">
                     <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Dollar Account</span>
-                    <span className="font-mono font-extrabold text-[16px] text-left">{bankDetails.dollarAccount}</span>
+                    <span className="font-mono font-extrabold text-[16px] text-left sm:text-right flex-grow">{bankDetails.dollarAccount}</span>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4 border-b border-white/5">
                     <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Pound Account</span>
-                    <span className="font-mono font-extrabold text-[16px] text-left">{bankDetails.poundAccount}</span>
+                    <span className="font-mono font-extrabold text-[16px] text-left sm:text-right flex-grow">{bankDetails.poundAccount}</span>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4 border-b border-white/5">
                     <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Swift Code</span>
-                    <span className="font-mono font-extrabold text-[15px] text-left">{bankDetails.swiftCode}</span>
+                    <span className="font-mono font-extrabold text-[15px] text-left sm:text-right flex-grow">{bankDetails.swiftCode}</span>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4">
                     <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Sort Code</span>
-                    <span className="font-mono font-extrabold text-[15px] text-left">{bankDetails.sortCode}</span>
+                    <span className="font-mono font-extrabold text-[15px] text-left sm:text-right flex-grow">{bankDetails.sortCode}</span>
                   </div>
                 </div>
               </div>
