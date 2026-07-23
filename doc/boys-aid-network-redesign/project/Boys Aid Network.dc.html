@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/tokens/base.css">
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/styles.css">
+  <script src="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/_ds_bundle.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="./image-slot.js"></script>
+  <style>
+    html{scroll-behavior:smooth;}
+    body{margin:0;background:var(--surface-page);color:var(--text-body);font-family:var(--font-body);}
+    a{color:var(--red-600);text-decoration:none;}
+    a:hover{color:var(--red-700);}
+    ::selection{background:var(--red-100);}
+    .ban-fade{animation:banFade .55s var(--ease-out) both;}
+    @keyframes banFade{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+    @media(max-width:880px){
+      [data-desktop-nav]{display:none!important;}
+      [data-hero-grid]{grid-template-columns:1fr!important;}
+      [data-cols3]{grid-template-columns:1fr!important;}
+      [data-cols4]{grid-template-columns:repeat(2,1fr)!important;}
+      [data-cols2]{grid-template-columns:1fr!important;}
+      [data-split]{grid-template-columns:1fr!important;}
+      [data-footer]{grid-template-columns:1fr!important;gap:36px!important;}
+      [data-h1]{font-size:2.5rem!important;}
+      [data-pad]{padding-top:60px!important;padding-bottom:60px!important;}
+    }
+    @media(min-width:881px){ [data-mobile-toggle]{display:none!important;} }
+  </style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(255,255,255,0.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border-subtle);">
+    <div style="max-width:1180px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:24px;">
+      <img src="uploads/images/Boys-Aid-Logo-1-Colour.png" alt="Boys Aid Network" style="height:46px;cursor:pointer;" onClick="{{ goHome }}">
+      <nav data-desktop-nav="" style="display:flex;gap:28px;margin-left:auto;align-items:center;">
+        <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="6">
+          <a onClick="{{ item.onClick }}" style="cursor:pointer;font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.01em;color:{{ item.color }};padding:6px 0;border-bottom:2px solid {{ item.underline }};transition:color .18s;">{{ item.label }}</a>
+        </sc-for>
+      </nav>
+      <div data-desktop-nav="">
+        <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Button" variant="accent" size="sm" onClick="{{ goSupport }}" hint-size="auto,40px">Support Us</x-import>
+      </div>
+      <button data-mobile-toggle="" onClick="{{ toggleMobile }}" aria-label="Menu" style="margin-left:auto;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:none;background:var(--navy-50);border-radius:12px;color:var(--navy-800);cursor:pointer;">
+        <i data-lucide="menu" style="width:24px;height:24px;"></i>
+      </button>
+    </div>
+  </header>
+
+  <sc-if value="{{ mobileOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:50;background:var(--navy-900);display:flex;flex-direction:column;padding:24px;" class="ban-fade">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;">
+        <img src="uploads/images/Boys-Aid-Logo-1-White.png" alt="Boys Aid Network" style="height:44px;">
+        <button onClick="{{ toggleMobile }}" aria-label="Close" style="width:44px;height:44px;border:none;background:rgba(255,255,255,0.1);border-radius:12px;color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;">
+          <i data-lucide="x" style="width:24px;height:24px;"></i>
+        </button>
+      </div>
+      <nav style="display:flex;flex-direction:column;gap:4px;">
+        <sc-for list="{{ navMobile }}" as="item" hint-placeholder-count="6">
+          <a onClick="{{ item.onClick }}" style="cursor:pointer;font-family:var(--font-display);font-weight:800;font-size:28px;letter-spacing:-.01em;color:{{ item.color }};padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.08);">{{ item.label }}</a>
+        </sc-for>
+      </nav>
+      <div style="margin-top:32px;">
+        <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Button" variant="accent" size="lg" full-width="{{ true }}" onClick="{{ goSupport }}" hint-size="100%,56px">Support Us</x-import>
+      </div>
+    </div>
+  </sc-if>
+
+  <main style="flex:1;">
+
+    <!-- ================= HOME ================= -->
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div class="ban-fade">
+      <section style="position:relative;background:var(--navy-800);overflow:hidden;">
+        <div style="position:absolute;top:-120px;right:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(200,5,5,0.35),transparent 70%);"></div>
+        <div style="position:relative;max-width:1180px;margin:0 auto;padding:0 24px;">
+          <div data-hero-grid="" style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;padding:84px 0;">
+            <div>
+              <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red-500);font-size:13px;margin-bottom:22px;">
+                <span style="width:26px;height:2px;background:var(--red-500);display:inline-block;"></span>Boy Child Advocacy
+              </div>
+              <h1 data-h1="" style="color:#fff;font-family:var(--font-display);font-size:clamp(2.6rem,5vw,4.1rem);font-weight:900;line-height:1.05;letter-spacing:-0.02em;margin:0;">Empowering Boys for a <span style="color:var(--red-500);">Better Tomorrow</span></h1>
+              <p style="color:rgba(255,255,255,0.82);font-size:19px;line-height:1.6;max-width:520px;margin:22px 0 0;">Teaching, mentoring and helping the boychild find himself, enjoy inclusion, live a godly life, and contribute to societal development.</p>
+              <div style="display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;">
+                <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Button" variant="accent" size="lg" onClick="{{ goPrograms }}" hint-size="auto,54px">Our Programs</x-import>
+                <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Button" variant="on-dark" size="lg" onClick="{{ goAbout }}" hint-size="auto,54px">Our Story</x-import>
+              </div>
+            </div>
+            <div style="position:relative;">
+              <div style="position:absolute;inset:16px -16px -16px 16px;border:3px solid var(--red-600);border-radius:20px;"></div>
+              <img src="uploads/images/AIN30-1-1024x684.jpeg" alt="Boys at the International Boys' Day Conference" style="position:relative;width:100%;border-radius:20px;display:block;box-shadow:0 24px 60px rgba(0,0,0,0.4);">
+              <div style="position:absolute;left:-18px;bottom:-24px;background:#fff;border-radius:16px;padding:16px 20px;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:14px;">
+                <div style="font-family:var(--font-display);font-weight:900;font-size:34px;color:var(--navy-800);line-height:1;">500<span style="color:var(--red-600);">+</span></div>
+                <div style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;line-height:1.3;">Boys<br>Reached</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:#fff;border-bottom:1px solid var(--border-subtle);">
+        <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
+          <div data-cols4="" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:46px 0;">
+            <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+              <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.StatCounter" value="{{ s.value }}" suffix="{{ s.suffix }}" label="{{ s.label }}" hint-size="100%,90px"></x-import>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section data-pad="" style="background:#fff;padding:88px 0;">
+        <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
+          <div data-split="" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+            <div style="position:relative;">
+              <img src="uploads/images/AIN6-1-1024x684.jpeg" alt="Boys arriving at a Boys Aid Network event" style="width:100%;border-radius:18px;display:block;box-shadow:var(--shadow-lg);">
+              <img src="uploads/images/AIN60-1-1024x684.jpeg" alt="Mentorship session" style="width:46%;border-radius:14px;position:absolute;right:-14px;bottom:-30px;border:6px solid #fff;box-shadow:var(--shadow-lg);">
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red-600);font-size:13px;margin-bottom:14px;">Who We Are</div>
+              <h2 style="font-family:var(--font-display);font-size:clamp(2rem,3.4vw,2.8rem);font-weight:800;color:var(--navy-800);line-height:1.12;letter-spacing:-.01em;margin:0 0 18px;">A network standing with the boychild</h2>
+              <p style="font-size:17px;line-height:1.7;color:var(--text-body);margin:0 0 16px;">Boys Aid Network is a boy-child advocacy organisation based in Nigeria. We teach, mentor and help boys find themselves, enjoy inclusion, live godly lives and contribute meaningfully to society.</p>
+              <p style="font-size:17px;line-height:1.7;color:var(--text-body);margin:0 0 26px;">Formerly Boy-King International, we rebranded in 2025 with a renewed mission — to raise a generation of purpose-driven young men who rise beyond their limits.</p>
+              <div style="display:flex;gap:14px;flex-wrap:wrap;">
+                <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Button" variant="primary" size="md" onClick="{{ goAbout }}" hint-size="auto,46px">More About Us</x-import>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="position:relative;background:var(--navy-900);overflow:hidden;">
+        <div style="position:absolute;inset:0;background-image:url(uploads/images/AIN116-1024x684.jpeg);background-size:cover;background-position:center 35%;opacity:0.22;filter:saturate(0.6);"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,66,0.85),rgba(11,15,66,0.92));"></div>
+        <div style="position:relative;max-width:900px;margin:0 auto;padding:96px 24px;text-align:center;">
+          <div style="font-family:var(--font-display);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red-500);font-size:13px;margin-bottom:16px;">Our Story in Motion</div>
+          <h2 style="font-family:var(--font-display);font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:800;color:#fff;line-height:1.15;margin:0 0 22px;">See the movement we're building</h2>
+          <button onClick="{{ openVideo }}" aria-label="Play video" style="margin:8px auto 0;width:88px;height:88px;border-radius:50%;border:none;background:var(--red-600);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-accent);transition:transform .2s;" onmouseenter="this.style.transform='scale(1.08)'" onmouseleave="this.style.transform='none'">
+            <i data-lucide="play" style="width:34px;height:34px;fill:#fff;margin-left:4px;"></i>
+          </button>
+          <p style="color:rgba(255,255,255,0.7);font-size:14px;margin-top:20px;">Watch how we're empowering the boychild</p>
+        </div>
+      </section>
+
+      <section data-pad="" style="background:var(--surface-subtle);padding:88px 0;">
+        <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
+          <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.SectionHeading" eyebrow="What We Do" title="Our Programs" subtitle="Six initiatives teaching, mentoring and standing with the boychild across Nigeria and Africa." hint-size="100%,140px"></x-import>
+          <div data-cols3="" style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:52px;">
+            <sc-for list="{{ programs }}" as="p" hint-placeholder-count="6">
+              <div onClick="{{ goPrograms }}" style="cursor:pointer;background:#fff;border:1px solid var(--border-subtle);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);transition:transform .22s,box-shadow .22s;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='var(--shadow-lg)'" onmouseleave="this.style.transform='none';this.style.boxShadow='var(--shadow-md)'">
+                <div style="height:180px;position:relative;overflow:hidden;">
+                  <img src="{{ p.img }}" alt="{{ p.title }}" style="width:100%;height:100%;object-fit:cover;display:block;">
+                  <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(17,23,92,0.55));"></div>
+                  <div style="position:absolute;left:20px;bottom:-26px;">
+                    <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.IconCircle" variant="red" size="{{ 54 }}" hint-size="54px,54px"><i data-lucide="{{ p.icon }}" style="width:24px;height:24px;"></i></x-import>
+                  </div>
+                </div>
+                <div style="padding:36px 24px 26px;">
+                  <h3 style="font-family:var(--font-display);font-size:19px;font-weight:800;color:var(--navy-800);margin:0 0 10px;line-height:1.25;">{{ p.title }}</h3>
+                  <p style="font-size:14.5px;color:var(--text-body);line-height:1.6;margin:0 0 16px;">{{ p.body }}</p>
+                  <span style="display:inline-flex;align-items:center;gap:6px;font-family:var(--font-display);font-weight:700;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--red-600);">Learn more <i data-lucide="arrow-right" style="width:15px;height:15px;"></i></span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section data-pad="" style="background:#fff;padding:88px 0;">
+        <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+            <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.SectionHeading" eyebrow="From the Field" title="Blog &amp; Impact Stories" align="left" hint-size="auto,110px"></x-import>
+            <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Button" variant="outline" size="sm" onClick="{{ goImpact }}" hint-size="auto,40px">View All</x-import>
+          </div>
+          <div data-cols3="" style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:48px;">
+            <sc-for list="{{ stories }}" as="st" hint-placeholder-count="3">
+              <div onClick="{{ goImpact }}" style="cursor:pointer;background:#fff;border:1px solid var(--border-subtle);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);transition:transform .22s,box-shadow .22s;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='var(--shadow-lg)'" onmouseleave="this.style.transform='none';this.style.boxShadow='var(--shadow-md)'">
+                <div style="height:180px;position:relative;">
+                  <img src="{{ st.img }}" alt="{{ st.title }}" style="width:100%;height:100%;object-fit:cover;display:block;">
+                  <div style="position:absolute;left:14px;top:14px;">
+                    <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Badge" variant="solidRed" hint-size="auto,26px">{{ st.tag }}</x-import>
+                  </div>
+                </div>
+                <div style="padding:22px;">
+                  <h3 style="font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--navy-800);line-height:1.3;margin:0 0 8px;">{{ st.title }}</h3>
+                  <p style="font-size:14px;color:var(--text-muted);line-height:1.55;margin:0;">{{ st.body }}</p>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:var(--navy-800);padding:20px 0;">
+        <div style="max-width:1180px;margin:0 auto;padding:24px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px;">
+            <div>
+              <div style="font-family:var(--font-display);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red-500);font-size:12px;margin-bottom:6px;">Gallery</div>
+              <h2 style="font-family:var(--font-display);font-size:26px;font-weight:800;color:#fff;margin:0;">Moments from the field</h2>
+            </div>
+            <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Button" variant="on-dark" size="sm" onClick="{{ goGallery }}" hint-size="auto,40px">Open Gallery</x-import>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;">
+            <sc-for list="{{ galleryPreview }}" as="g" hint-placeholder-count="6">
+              <div onClick="{{ g.onClick }}" style="cursor:pointer;aspect-ratio:1/1;overflow:hidden;border-radius:10px;">
+                <img src="{{ g.src }}" alt="Boys Aid Network gallery" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s;" onmouseenter="this.style.transform='scale(1.08)'" onmouseleave="this.style.transform='none'">
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <dc-import name="CTA" on-donate="{{ goSupport }}" on-partner="{{ goSupport }}" hint-size="100%,250px"></dc-import>
+    </div>
+    </sc-if>
+
+    <!-- ================= ABOUT ================= -->
+    <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+    <div class="ban-fade">
+      <dc-import name="PageHero" eyebrow="Who We Are" title="Our Story" subtitle="From Boy-King International to Boys Aid Network — a mission renewed." img="uploads/images/AIN70-1-1024x684.jpeg" hint-size="100%,300px"></dc-import>
+      <section data-pad="" style="background:#fff;padding:84px 0;">
+        <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
+          <div data-split="" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+            <div>
+              <div style="font-family:var(--font-display);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red-600);font-size:13px;margin-bottom:14px;">Our Mission</div>
+              <h2 style="font-family:var(--font-display);font-size:clamp(1.9rem,3.2vw,2.6rem);font-weight:800;color:var(--navy-800);line-height:1.14;margin:0 0 18px;">Raising purpose-driven young men</h2>
+              <p style="font-size:17px;line-height:1.7;color:var(--text-body);margin:0 0 16px;">Boys Aid Network is a boy-child advocacy organisation focused on teaching, mentoring and helping the boychild find himself, enjoy inclusion, live a godly life and contribute to societal development.</p>
+              <p style="font-size:17px;line-height:1.7;color:var(--text-body);margin:0;">In 2025 we rebranded from Boy-King International to Boys Aid Network, sharpening our focus on advocacy, mentorship and community support for boys across Nigeria and Africa.</p>
+            </div>
+            <img src="uploads/images/AIN42-1-1024x684.jpeg" alt="Boys Aid Network gathering" style="width:100%;border-radius:18px;box-shadow:var(--shadow-lg);display:block;">
+          </div>
+        </div>
+      </section>
+
+      <section style="background:var(--surface-subtle);padding:80px 0;">
+        <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
+          <div data-cols3="" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+            <sc-for list="{{ values }}" as="v" hint-placeholder-count="3">
+              <div style="background:#fff;border:1px solid var(--border-subtle);border-radius:16px;padding:32px 26px;box-shadow:var(--shadow-md);">
+                <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.IconCircle" variant="navy" size="{{ 60 }}" hint-size="60px,60px"><i data-lucide="{{ v.icon }}" style="width:26px;height:26px;"></i></x-import>
+                <h3 style="font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--navy-800);margin:18px 0 10px;">{{ v.title }}</h3>
+                <p style="font-size:15px;line-height:1.65;color:var(--text-body);margin:0;">{{ v.body }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:#fff;padding:84px 0;">
+        <div style="max-width:820px;margin:0 auto;padding:0 24px;text-align:center;">
+          <i data-lucide="quote" style="width:44px;height:44px;color:var(--red-600);"></i>
+          <p style="font-family:var(--font-display);font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:700;color:var(--navy-800);line-height:1.4;margin:18px 0 22px;letter-spacing:-.01em;">"On July 19, 2025, a dream I had carried for years finally became reality. We held our first International Boys' Day Conference."</p>
+          <div style="font-family:var(--font-display);font-weight:700;color:var(--red-600);text-transform:uppercase;letter-spacing:.08em;font-size:13px;">Founder, Boys Aid Network</div>
+        </div>
+      </section>
+
+      <section style="background:var(--navy-800);">
+        <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
+          <div data-cols4="" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:56px 0;">
+            <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+              <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.StatCounter" value="{{ s.value }}" suffix="{{ s.suffix }}" label="{{ s.label }}" on-dark="{{ true }}" hint-size="100%,90px"></x-import>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+      <dc-import name="CTA" on-donate="{{ goSupport }}" on-partner="{{ goSupport }}" hint-size="100%,250px"></dc-import>
+    </div>
+    </sc-if>
+
+    <!-- ================= FOUNDER'S NOTE ================= -->
+    <sc-if value="{{ isFounder }}" hint-placeholder-val="{{ false }}">
+    <div class="ban-fade">
+      <dc-import name="PageHero" eyebrow="From the Founder" title="Founder's Note" subtitle="A personal word on the vision behind Boys Aid Network." img="uploads/images/AIN70-1-1024x684.jpeg" hint-size="100%,300px"></dc-import>
+      <section style="background:#fff;padding:84px 0;">
+        <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
+          <div data-split="" style="display:grid;grid-template-columns:0.8fr 1.2fr;gap:48px;align-items:start;">
+            <div>
+              <div style="border-radius:18px;overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:3/4;position:relative;">
+                <image-slot id="founder-photo" shape="rect" placeholder="Drop the founder's photo" style="width:100%;height:100%;"></image-slot>
+              </div>
+              <div style="margin-top:18px;text-align:center;">
+                <div style="font-family:var(--font-display);font-weight:800;color:var(--navy-800);font-size:18px;">Olufunke Oyinlola</div>
+                <div style="font-size:13px;color:var(--red-600);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-top:2px;">Boys Aid Network</div>
+              </div>
+            </div>
+            <div>
+              <i data-lucide="quote" style="width:40px;height:40px;color:var(--red-600);"></i>
+              <p style="font-family:var(--font-display);font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:700;color:var(--navy-800);line-height:1.4;margin:14px 0 26px;letter-spacing:-.01em;">On July 19, 2025, a dream I had carried for years finally became reality.</p>
+              <p style="font-size:17px;line-height:1.8;color:var(--text-body);margin:0 0 18px;">For a long time, I watched the boychild grow up in a world that too often overlooked him — assumed to be strong, expected to cope alone, rarely asked how he was really doing. I knew that if no one stepped in to teach, mentor and simply stand with these boys, we would keep losing them to the streets, to crime, and to quiet despair.</p>
+              <p style="font-size:17px;line-height:1.8;color:var(--text-body);margin:0 0 18px;">That conviction became Boy-King International, and in 2025 it grew into Boys Aid Network — a renewed, sharper mission to help every boy find himself, enjoy inclusion, live a godly life and contribute to society. What began as one person's burden is now a growing network of volunteers, mentors and partners who believe the same thing: boys matter, and their future is worth fighting for.</p>
+              <p style="font-size:17px;line-height:1.8;color:var(--text-body);margin:0 0 26px;">To everyone who has prayed, given, volunteered or simply believed — thank you. This is only the beginning. Together, we are empowering boys for a better tomorrow.</p>
+              <div style="font-family:var(--font-display);font-weight:700;color:var(--red-600);text-transform:uppercase;letter-spacing:.08em;font-size:13px;">— Founder, Boys Aid Network</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <dc-import name="CTA" on-donate="{{ goSupport }}" on-partner="{{ goSupport }}" hint-size="100%,250px"></dc-import>
+    </div>
+    </sc-if>
+
+    <!-- ================= PROGRAMS ================= -->
+    <sc-if value="{{ isPrograms }}" hint-placeholder-val="{{ false }}">
+    <div class="ban-fade">
+      <dc-import name="PageHero" eyebrow="What We Do" title="Our Programs" subtitle="Six initiatives teaching, mentoring and standing with the boychild." img="uploads/images/AIN58-1-1024x684.jpeg" hint-size="100%,300px"></dc-import>
+      <section style="background:#fff;padding:80px 0;">
+        <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
+          <div data-cols2="" style="display:grid;grid-template-columns:repeat(2,1fr);gap:28px;">
+            <sc-for list="{{ programs }}" as="p" hint-placeholder-count="6">
+              <div style="background:#fff;border:1px solid var(--border-subtle);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-md);display:flex;flex-direction:column;transition:transform .22s,box-shadow .22s;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='var(--shadow-lg)'" onmouseleave="this.style.transform='none';this.style.boxShadow='var(--shadow-md)'">
+                <div style="height:230px;position:relative;overflow:hidden;">
+                  <img src="{{ p.img }}" alt="{{ p.title }}" style="width:100%;height:100%;object-fit:cover;display:block;">
+                  <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(17,23,92,0.55));"></div>
+                  <div style="position:absolute;left:24px;bottom:-28px;">
+                    <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.IconCircle" variant="red" size="{{ 58 }}" hint-size="58px,58px"><i data-lucide="{{ p.icon }}" style="width:26px;height:26px;"></i></x-import>
+                  </div>
+                </div>
+                <div style="padding:42px 30px 32px;">
+                  <h3 style="font-family:var(--font-display);font-size:clamp(1.35rem,2vw,1.6rem);font-weight:800;color:var(--navy-800);margin:0 0 12px;line-height:1.2;">{{ p.title }}</h3>
+                  <p style="font-size:16px;line-height:1.7;color:var(--text-body);margin:0;">{{ p.body }}</p>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+      <dc-import name="CTA" on-donate="{{ goSupport }}" on-partner="{{ goSupport }}" hint-size="100%,250px"></dc-import>
+    </div>
+    </sc-if>
+
+    <!-- ================= IMPACT ================= -->
+    <sc-if value="{{ isImpact }}" hint-placeholder-val="{{ false }}">
+    <div class="ban-fade">
+      <dc-import name="PageHero" eyebrow="From the Field" title="Impact &amp; Stories" subtitle="Milestones, campaigns and moments that shaped the boychild." img="uploads/images/AIN114-1024x684.jpeg" hint-size="100%,300px"></dc-import>
+      <section style="background:#fff;">
+        <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
+          <div data-cols4="" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:56px 0;border-bottom:1px solid var(--border-subtle);">
+            <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+              <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.StatCounter" value="{{ s.value }}" suffix="{{ s.suffix }}" label="{{ s.label }}" hint-size="100%,90px"></x-import>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+      <section style="background:var(--surface-subtle);padding:80px 0;">
+        <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
+          <div data-cols3="" style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;">
+            <sc-for list="{{ storiesFull }}" as="st" hint-placeholder-count="6">
+              <div style="background:#fff;border:1px solid var(--border-subtle);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);transition:transform .22s,box-shadow .22s;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='var(--shadow-lg)'" onmouseleave="this.style.transform='none';this.style.boxShadow='var(--shadow-md)'">
+                <div style="height:190px;position:relative;">
+                  <img src="{{ st.img }}" alt="{{ st.title }}" style="width:100%;height:100%;object-fit:cover;display:block;">
+                  <div style="position:absolute;left:14px;top:14px;">
+                    <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Badge" variant="solidRed" hint-size="auto,26px">{{ st.tag }}</x-import>
+                  </div>
+                </div>
+                <div style="padding:24px;">
+                  <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:8px;">{{ st.date }}</div>
+                  <h3 style="font-family:var(--font-display);font-size:18px;font-weight:800;color:var(--navy-800);line-height:1.3;margin:0 0 10px;">{{ st.title }}</h3>
+                  <p style="font-size:14.5px;color:var(--text-body);line-height:1.6;margin:0;">{{ st.body }}</p>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+      <dc-import name="CTA" on-donate="{{ goSupport }}" on-partner="{{ goSupport }}" hint-size="100%,250px"></dc-import>
+    </div>
+    </sc-if>
+
+    <!-- ================= GALLERY ================= -->
+    <sc-if value="{{ isGallery }}" hint-placeholder-val="{{ false }}">
+    <div class="ban-fade">
+      <dc-import name="PageHero" eyebrow="Gallery" title="Moments &amp; Milestones" subtitle="Faces of the movement — conferences, bootcamps and mentorship in action." img="uploads/images/AIN116-1024x684.jpeg" hint-size="100%,300px"></dc-import>
+      <section style="background:#fff;padding:64px 0;">
+        <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
+          <div style="columns:4;column-gap:14px;">
+            <sc-for list="{{ galleryItems }}" as="g" hint-placeholder-count="16">
+              <div onClick="{{ g.onClick }}" style="break-inside:avoid;margin-bottom:14px;overflow:hidden;border-radius:12px;cursor:pointer;position:relative;">
+                <img src="{{ g.src }}" alt="Boys Aid Network gallery" style="width:100%;display:block;transition:transform .35s,filter .35s;" onmouseenter="this.style.transform='scale(1.05)';this.style.filter='brightness(0.85)'" onmouseleave="this.style.transform='none';this.style.filter='none'">
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+      <dc-import name="CTA" on-donate="{{ goSupport }}" on-partner="{{ goSupport }}" hint-size="100%,250px"></dc-import>
+    </div>
+    </sc-if>
+
+    <!-- ================= SUPPORT ================= -->
+    <sc-if value="{{ isSupport }}" hint-placeholder-val="{{ false }}">
+    <div class="ban-fade">
+      <dc-import name="PageHero" eyebrow="Get Involved" title="Support Us" subtitle="Your support can transform lives. Give directly, or partner with us to empower the boychild." img="uploads/images/AIN30-1-1024x684.jpeg" hint-size="100%,300px"></dc-import>
+      <section style="background:#fff;padding:80px 0;">
+        <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
+          <div data-split="" style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:stretch;">
+            <div style="background:var(--navy-800);border-radius:20px;padding:40px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden;">
+              <div style="position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(200,5,5,0.25);"></div>
+              <div style="position:relative;">
+                <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.IconCircle" variant="red" size="{{ 60 }}" hint-size="60px,60px"><i data-lucide="heart-handshake" style="width:28px;height:28px;"></i></x-import>
+                <h2 style="font-family:var(--font-display);font-size:26px;font-weight:800;color:#fff;margin:18px 0 8px;">Donate via Bank Transfer</h2>
+                <p style="color:rgba(255,255,255,0.78);font-size:15px;line-height:1.6;margin:0 0 24px;">Every gift, big or small, helps us teach, mentor and stand with boys across Nigeria. Send your donation directly to our account below.</p>
+                <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;overflow:hidden;">
+                  <sc-for list="{{ bankRows }}" as="r" hint-placeholder-count="4">
+                    <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.08);">
+                      <span style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.6);font-weight:600;align-self:center;">{{ r.label }}</span>
+                      <span style="font-family:var(--font-display);font-weight:800;color:#fff;font-size:16px;text-align:right;">{{ r.value }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+                <p style="color:rgba(255,255,255,0.55);font-size:12.5px;margin:16px 0 0;">Please use your name as the transfer reference so we can say thank you.</p>
+              </div>
+            </div>
+            <div style="background:var(--surface-subtle);border:1px solid var(--border-subtle);border-radius:20px;padding:40px;display:flex;flex-direction:column;">
+              <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.IconCircle" variant="navy" size="{{ 60 }}" hint-size="60px,60px"><i data-lucide="handshake" style="width:28px;height:28px;"></i></x-import>
+              <h2 style="font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--navy-800);margin:18px 0 8px;">Partner With Us</h2>
+              <p style="font-size:15.5px;line-height:1.7;color:var(--text-body);margin:0 0 22px;">Are you an organisation, school, or individual who shares our vision for the boychild? Let's build something together — sponsorships, events, mentorship and more.</p>
+              <div style="background:#fff;border:1px solid var(--border-subtle);border-radius:14px;padding:20px;margin-bottom:24px;">
+                <div style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);font-weight:700;margin-bottom:6px;">Partnership Email</div>
+                <a href="mailto:partnerships@boysaidnetwork.org" style="font-family:var(--font-display);font-weight:800;font-size:19px;color:var(--red-600);word-break:break-all;">partnerships@boysaidnetwork.org</a>
+              </div>
+              <div style="margin-top:auto;">
+                <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Button" variant="accent" size="lg" href="mailto:partnerships@boysaidnetwork.org" hint-size="auto,54px">Email Us to Partner</x-import>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <dc-import name="CTA" on-donate="{{ goSupport }}" on-partner="{{ goSupport }}" hint-size="100%,250px"></dc-import>
+    </div>
+    </sc-if>
+
+  </main>
+
+  <footer style="background:var(--navy-900);color:rgba(255,255,255,0.72);">
+    <div data-footer="" style="max-width:1180px;margin:0 auto;padding:64px 24px 40px;display:grid;grid-template-columns:1.7fr 0.9fr 1.1fr 1.2fr;gap:40px;">
+      <div>
+        <img src="uploads/images/Boys-Aid-Logo-1-White.png" alt="Boys Aid Network" style="height:48px;margin-bottom:18px;">
+        <p style="font-size:14.5px;line-height:1.65;max-width:340px;margin:0 0 20px;">Teaching, mentoring and helping boys find themselves, enjoy inclusion, live godly lives and contribute to societal development.</p>
+        <div style="display:flex;gap:12px;">
+          <sc-for list="{{ socials }}" as="s" hint-placeholder-count="3">
+            <span style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;transition:background .2s;" onmouseenter="this.style.background='var(--red-600)'" onmouseleave="this.style.background='rgba(255,255,255,0.1)'"><i data-lucide="{{ s }}" style="width:17px;height:17px;"></i></span>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#fff;font-family:var(--font-display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 16px;">Explore</h4>
+        <sc-for list="{{ navMobile }}" as="item" hint-placeholder-count="6">
+          <div onClick="{{ item.onClick }}" style="font-size:14.5px;padding:6px 0;cursor:pointer;transition:color .18s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='rgba(255,255,255,0.72)'">{{ item.label }}</div>
+        </sc-for>
+      </div>
+      <div>
+        <h4 style="color:#fff;font-family:var(--font-display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 16px;">Programs</h4>
+        <sc-for list="{{ programsFooter }}" as="item" hint-placeholder-count="5">
+          <div onClick="{{ item.onClick }}" style="font-size:14px;padding:6px 0;cursor:pointer;line-height:1.35;transition:color .18s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='rgba(255,255,255,0.72)'">{{ item.label }}</div>
+        </sc-for>
+      </div>
+      <div>
+        <h4 style="color:#fff;font-family:var(--font-display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 16px;">Get in Touch</h4>
+        <div style="font-size:14.5px;padding:5px 0;">hello@boysaidnetwork.org</div>
+        <div style="font-size:14.5px;padding:5px 0;">+234-814-765-5062</div>
+        <div style="font-size:14.5px;padding:5px 0;">Lagos, Nigeria</div>
+        <div style="margin-top:18px;">
+          <div style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.55);font-weight:700;margin-bottom:10px;">Newsletter</div>
+          <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <input placeholder="Your email" value="{{ subEmail }}" onInput="{{ onSubEmail }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid rgba(255,255,255,0.18);border-radius:10px;font-size:14px;font-family:var(--font-body);background:rgba(255,255,255,0.06);color:#fff;outline:none;">
+              <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Button" variant="accent" size="sm" full-width="{{ true }}" onClick="{{ subscribe }}" hint-size="100%,40px">Subscribe</x-import>
+            </div>
+          </sc-if>
+          <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:center;gap:8px;color:#fff;font-size:14px;background:rgba(255,255,255,0.08);border-radius:10px;padding:12px 14px;"><i data-lucide="check" style="width:18px;height:18px;color:var(--red-500);"></i>Subscribed — thank you!</div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1);padding:20px 24px;text-align:center;font-size:13px;">© 2025 Boys Aid Network. All Rights Reserved. · Empowering Boys for a Better Tomorrow.</div>
+  </footer>
+
+  <!-- ===== VIDEO MODAL ===== -->
+  <sc-if value="{{ videoOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeVideo }}" style="position:fixed;inset:0;z-index:60;background:rgba(11,15,66,0.85);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:24px;" class="ban-fade">
+      <div onClick="{{ stop }}" style="width:100%;max-width:960px;position:relative;">
+        <button onClick="{{ closeVideo }}" aria-label="Close" style="position:absolute;top:-46px;right:0;width:40px;height:40px;border:none;background:rgba(255,255,255,0.14);border-radius:50%;cursor:pointer;color:#fff;display:inline-flex;align-items:center;justify-content:center;"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+        <div style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);background:#000;">
+          <iframe src="https://www.youtube.com/embed/islKbo3Mcmg?autoplay=1&amp;rel=0" title="Boys Aid Network" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="" style="position:absolute;inset:0;width:100%;height:100%;border:0;"></iframe>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:60;background:rgba(11,15,66,0.92);display:flex;align-items:center;justify-content:center;padding:40px;" class="ban-fade">
+      <button onClick="{{ closeLightbox }}" aria-label="Close" style="position:absolute;top:24px;right:24px;width:46px;height:46px;border:none;background:rgba(255,255,255,0.14);border-radius:50%;cursor:pointer;color:#fff;display:inline-flex;align-items:center;justify-content:center;z-index:2;"><i data-lucide="x" style="width:22px;height:22px;"></i></button>
+      <button onClick="{{ prevLightbox }}" aria-label="Previous" style="position:absolute;left:24px;top:50%;transform:translateY(-50%);width:52px;height:52px;border:none;background:rgba(255,255,255,0.14);border-radius:50%;cursor:pointer;color:#fff;display:inline-flex;align-items:center;justify-content:center;"><i data-lucide="chevron-left" style="width:26px;height:26px;"></i></button>
+      <img onClick="{{ stop }}" src="{{ lightboxSrc }}" alt="Boys Aid Network gallery" style="max-width:88vw;max-height:82vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+      <button onClick="{{ nextLightbox }}" aria-label="Next" style="position:absolute;right:24px;top:50%;transform:translateY(-50%);width:52px;height:52px;border:none;background:rgba(255,255,255,0.14);border-radius:50%;cursor:pointer;color:#fff;display:inline-flex;align-items:center;justify-content:center;"><i data-lucide="chevron-right" style="width:26px;height:26px;"></i></button>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    page: 'home', mobileOpen: false,
+    videoOpen: false, lightbox: null,
+    subEmail: '', subscribed: false,
+  };
+
+  gallerySrcs = [
+    'AIN30-1','AIN116','AIN42-1','AIN60-1','AIN58-1','AIN70-1','AIN114','AIN6-1',
+    'AIN1','AIN2','AIN5-1','AIN7-1','AIN9','AIN10-1','AIN11-1','AIN12','AIN15-1',
+    'AIN18-1','AIN21-1','AIN22-1','AIN24-1','AIN27-1','AIN31-1','AIN36-1','AIN37-1',
+    'AIN41-1','AIN44-1','AIN46-1','AIN49-1','AIN50-1','AIN55-1','AIN56-1','AIN57-1',
+    'AIN69','AIN71','AIN73','AIN75','AIN90','AIN91','AIN97','AIN102',
+  ].map(n => 'uploads/images/gallery/' + n + '-scaled.jpeg');
+
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() { if (typeof window !== 'undefined' && window.lucide) { try { window.lucide.createIcons(); } catch (e) {} } }
+
+  go(page) { this.setState({ page, mobileOpen: false }); if (typeof window !== 'undefined') window.scrollTo({ top: 0 }); }
+
+  renderVals() {
+    const s = this.state;
+    const nav = [
+      { label: 'Home', page: 'home' }, { label: 'About', page: 'about' },
+      { label: "Founder's Note", page: 'founder' },
+      { label: 'Programs', page: 'programs' }, { label: 'Impact', page: 'impact' },
+      { label: 'Gallery', page: 'gallery' }, { label: 'Support', page: 'support' },
+    ];
+    const navItems = nav.map(n => ({
+      label: n.label, onClick: () => this.go(n.page),
+      color: s.page === n.page ? 'var(--red-600)' : 'var(--navy-800)',
+      underline: s.page === n.page ? 'var(--red-600)' : 'transparent',
+    }));
+    const navMobile = nav.map(n => ({
+      label: n.label, onClick: () => this.go(n.page),
+      color: s.page === n.page ? 'var(--red-500)' : '#fff',
+    }));
+
+    const stats = [
+      { value: '500', suffix: '+', label: 'Boys Reached' },
+      { value: '12', suffix: 'k+', label: 'Online Impact' },
+      { value: '80', suffix: '+', label: 'Active Volunteers' },
+      { value: '6', suffix: '', label: 'Major Programs' },
+    ];
+
+    const P = (icon, title, body, img) => ({ icon, title, body, img: 'uploads/images/' + img + '-1024x684.jpeg' });
+    const programs = [
+      P('hand-heart', 'Street Children Badge of Hope', 'Supporting young boys living and working on the streets with care, shelter and a path forward.', 'AIN58-1'),
+      P('shield', 'Law Enforcement Shield of Support', 'Standing with members of law enforcement across Nigeria to strengthen safer communities.', 'AIN42-1'),
+      P('users', 'Boys Bootcamp', 'Gathering boys ages 8–18 for speakers, mentorship and character-building experiences.', 'AIN60-1'),
+      P('graduation-cap', 'Mentorship Groups', 'Monthly mentorship clubs building confidence, character and direction in young boys.', 'AIN70-1'),
+      P('scale', 'Africa Crime Prevention Conference', 'Advancing SDG 16 across Africa through prevention, dialogue and youth engagement.', 'AIN114'),
+      P('megaphone', "International Boys' Day Conference", 'A visionary conference created to inspire and equip the boychild for a better tomorrow.', 'AIN116'),
+    ];
+    const programsFull = programs.map((p, i) => ({
+      ...p,
+      cols: i % 2 === 0 ? '1fr 1fr' : '1fr 1fr',
+      imgRow: 'auto',
+    }));
+
+    const stories = [
+      { tag: 'Blog', title: "We Held Our First International Boys' Day Conference", body: 'On July 19, 2025, a dream carried for years finally became reality.', img: 'uploads/images/AIN30-1-1024x684.jpeg' },
+      { tag: 'Impact', title: 'The Boys Against Crime Campaign', body: 'Birthed in April 2022 after reports of criminal activity among young boys.', img: 'uploads/images/AIN42-1-1024x684.jpeg' },
+      { tag: 'Impact', title: 'Boys Bootcamp 2022', body: 'Boys ages 8–18 gathered for a transformative week of speakers and mentorship.', img: 'uploads/images/AIN60-1-1024x684.jpeg' },
+    ];
+    const storiesFull = [
+      { ...stories[0], date: 'July 2025' },
+      { ...stories[1], date: 'April 2022' },
+      { ...stories[2], date: 'December 2022' },
+      { tag: 'Blog', title: 'Boys Against Crime Reaches Schools', body: 'Taking the message of purpose and integrity directly to classrooms.', img: 'uploads/images/AIN116-1024x684.jpeg', date: '2023' },
+      { tag: 'Impact', title: 'Mentorship Clubs Expand', body: 'New monthly groups launched, welcoming dozens more boys into mentorship.', img: 'uploads/images/AIN70-1-1024x684.jpeg', date: '2024' },
+      { tag: 'Blog', title: 'We Rebranded to Boys Aid Network', body: 'Boy-King International became Boys Aid Network with a renewed mission.', img: 'uploads/images/AIN114-1024x684.jpeg', date: '2025' },
+    ];
+
+    const values = [
+      { icon: 'compass', title: 'Find Himself', body: 'We help each boy discover his identity, purpose and God-given potential.' },
+      { icon: 'users', title: 'Enjoy Inclusion', body: 'Every boy belongs. We build spaces where no child is left behind.' },
+      { icon: 'trending-up', title: 'Contribute', body: 'We equip boys to give back and shape a better society for all.' },
+    ];
+
+    const bankRows = [
+      { label: 'Account Name', value: 'Boys Aid Network' },
+      { label: 'Bank Name', value: 'Access Bank Plc' },
+      { label: 'Account Number', value: '1234567890' },
+      { label: 'SWIFT / Sort Code', value: 'ABNGNGLA' },
+    ];
+    const programsFooter = programs.slice(0, 5).map(p => ({ label: p.title, onClick: () => this.go('programs') }));
+
+    const galleryItems = this.gallerySrcs.map((src, i) => ({ src, onClick: () => this.setState({ lightbox: i }) }));
+
+    return {
+      isHome: s.page === 'home', isAbout: s.page === 'about', isPrograms: s.page === 'programs',
+      isImpact: s.page === 'impact', isGallery: s.page === 'gallery', isSupport: s.page === 'support', isFounder: s.page === 'founder',
+      mobileOpen: s.mobileOpen,
+      navItems, navMobile, stats, programs, programsFull, programsFooter, stories, storiesFull, values, bankRows,
+      galleryItems, galleryPreview: galleryItems.slice(0, 6),
+      socials: ['globe', 'mail', 'send'],
+
+      goHome: () => this.go('home'), goAbout: () => this.go('about'), goPrograms: () => this.go('programs'),
+      goImpact: () => this.go('impact'), goGallery: () => this.go('gallery'), goSupport: () => this.go('support'), goFounder: () => this.go('founder'),
+      toggleMobile: () => this.setState(st => ({ mobileOpen: !st.mobileOpen })),
+      stop: (e) => e.stopPropagation(),
+
+      openVideo: () => this.setState({ videoOpen: true }), closeVideo: () => this.setState({ videoOpen: false }), videoOpen: s.videoOpen,
+
+      lightboxOpen: s.lightbox !== null, lightboxSrc: s.lightbox !== null ? this.gallerySrcs[s.lightbox] : null,
+      closeLightbox: () => this.setState({ lightbox: null }),
+      nextLightbox: () => this.setState(st => ({ lightbox: (st.lightbox + 1) % this.gallerySrcs.length })),
+      prevLightbox: () => this.setState(st => ({ lightbox: (st.lightbox - 1 + this.gallerySrcs.length) % this.gallerySrcs.length })),
+
+      subEmail: s.subEmail, subscribed: s.subscribed, notSubscribed: !s.subscribed,
+      onSubEmail: (e) => this.setState({ subEmail: e.target.value }),
+      subscribe: () => { if (s.subEmail.trim()) this.setState({ subscribed: true }); },
+    };
+  }
+}
+</script>
+</body>
+</html>

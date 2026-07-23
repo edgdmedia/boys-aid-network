@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/tokens/fonts.css">
+  <script src="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/_ds_bundle.js"></script>
+  <style>@media(max-width:880px){[data-cta-h]{font-size:2rem!important;}}</style>
+</helmet>
+<section style="background:var(--red-600);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-80px;left:-40px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,0.06);"></div>
+  <div style="position:absolute;bottom:-100px;right:-30px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,0.06);"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;padding:76px 24px;text-align:center;">
+    <h2 data-cta-h style="color:#fff;font-family:var(--font-display);font-size:clamp(2rem,3.6vw,2.9rem);font-weight:900;letter-spacing:-.01em;margin:0;">Support a Boy, Shape a Future</h2>
+    <p style="color:rgba(255,255,255,0.92);font-size:18px;margin:14px 0 0;">Your support can transform lives. Join the movement today.</p>
+    <div style="display:flex;gap:14px;justify-content:center;margin-top:30px;flex-wrap:wrap;">
+      <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Button" variant="on-dark" size="lg" onClick="{{ onDonate }}" hint-size="auto,54px">Support Us</x-import>
+      <x-import component-from-global-scope="BoysAidNetworkDesignSystem_b9a295.Button" variant="ghost" size="lg" onClick="{{ onPartner }}" style="{{ ghostStyle }}" hint-size="auto,54px">Partner With Us</x-import>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      onDonate: this.props.onDonate || (() => {}),
+      onPartner: this.props.onPartner || (() => {}),
+      ghostStyle: { color: '#fff', border: '2px solid rgba(255,255,255,0.6)' },
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/boys-aid-network-design-system-b9a295c9-1990-4204-8532-bcc6630253a1/tokens/fonts.css">
+  <style>@media(max-width:880px){[data-ph-h]{font-size:2.4rem!important;}}</style>
+</helmet>
+<section style="position:relative;background:var(--navy-800);overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:url({{ img }});background-size:cover;background-position:center 32%;opacity:0.28;filter:saturate(0.55);"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,23,92,0.82),rgba(11,15,66,0.92));"></div>
+  <div style="position:relative;max-width:900px;margin:0 auto;padding:88px 24px;text-align:center;">
+    <div style="font-family:var(--font-display);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red-500);font-size:13px;margin-bottom:16px;">{{ eyebrow }}</div>
+    <h1 data-ph-h style="color:#fff;font-family:var(--font-display);font-size:clamp(2.4rem,5vw,3.6rem);font-weight:900;line-height:1.08;letter-spacing:-.02em;margin:0;">{{ title }}</h1>
+    <div style="width:60px;height:4px;background:var(--red-600);border-radius:999px;margin:20px auto 0;"></div>
+    <p style="color:rgba(255,255,255,0.82);font-size:18px;line-height:1.6;max-width:600px;margin:20px auto 0;">{{ subtitle }}</p>
+  </div>
+</section>
+</x-dc>
+</body>
+</html>

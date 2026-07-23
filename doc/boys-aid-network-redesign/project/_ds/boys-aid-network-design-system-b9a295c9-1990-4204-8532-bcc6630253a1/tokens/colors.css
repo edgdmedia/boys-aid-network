@@ -1,0 +1,61 @@
+:root{
+  /* ===== Base palette ===== */
+  /* Navy — primary brand color (logo circle + BOYS/NETWORK wordmark) */
+  --navy-900:#0b0f42;
+  --navy-800:#11175c; /* core brand navy */
+  --navy-700:#1b2278;
+  --navy-600:#2a3395;
+  --navy-500:#3d47b0;
+  --navy-100:#e4e6f2;
+  --navy-50:#f2f3f9;
+
+  /* Red — accent brand color (AID wordmark, business card, CTAs) */
+  --red-700:#a30404;
+  --red-600:#c80505; /* core brand red */
+  --red-500:#e0281f;
+  --red-100:#fbe3e3;
+  --red-50:#fdf2f2;
+
+  /* Neutrals */
+  --white:#ffffff;
+  --gray-50:#f7f8fa;
+  --gray-100:#eef0f4;
+  --gray-200:#e0e3ea;
+  --gray-300:#c7ccd8;
+  --gray-400:#9aa1b4;
+  --gray-500:#6b7280;
+  --gray-600:#4b5162;
+  --gray-700:#333849;
+  --gray-900:#15171f;
+
+  /* Gold — sparing celebratory accent (rebrand confetti) */
+  --gold-500:#e0a83c;
+
+  /* ===== Semantic aliases ===== */
+  --color-primary:var(--navy-800);
+  --color-primary-hover:var(--navy-700);
+  --color-primary-active:var(--navy-900);
+  --color-accent:var(--red-600);
+  --color-accent-hover:var(--red-700);
+  --color-accent-active:var(--red-700);
+
+  --text-heading:var(--navy-800);
+  --text-body:var(--gray-700);
+  --text-muted:var(--gray-500);
+  --text-on-dark:var(--white);
+  --text-on-accent:var(--white);
+  --text-link:var(--red-600);
+  --text-link-hover:var(--red-700);
+
+  --surface-page:var(--white);
+  --surface-subtle:var(--gray-50);
+  --surface-card:var(--white);
+  --surface-brand:var(--navy-800);
+  --surface-brand-deep:var(--navy-900);
+  --surface-accent:var(--red-600);
+
+  --border-subtle:var(--gray-200);
+  --border-strong:var(--gray-300);
+
+  --focus-ring:var(--red-500);
+}
