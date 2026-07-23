@@ -38,13 +38,13 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
         subtitle="Empowering boys through targeted action and community support."
         img={prog.img}
         backLink="/programs"
-        backText="Programs"
+        backText="All Programs"
       />
 
       {/* Main Body */}
       <article className="bg-white py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row gap-10 lg:gap-14 items-start">
+          <div className="flex flex-col md:flex-row gap-10 lg:gap-14 items-start md:items-center">
             
             {/* Left Column: Featured Image */}
             <div className="w-full md:w-5/12 select-none shrink-0">
