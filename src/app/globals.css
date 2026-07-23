@@ -65,8 +65,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Default headings get Navy 800 unless overridden by utility classes */
+/* Default headings font family */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  color: var(--color-navy-800);
 }
