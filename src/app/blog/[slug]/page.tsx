@@ -53,10 +53,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           >
             <ArrowLeft className="w-4 h-4" /> All Articles
           </Link>
-          <div className="inline-flex items-center gap-2 font-display font-bold tracking-widest uppercase text-red-500 text-[12.5px] mb-5">
-            <span className="w-6 h-[2px] bg-red-500 inline-block" />
-            Blog Post
-          </div>
           <h1 className="font-display font-black text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight max-w-3xl">
             {post.title}
           </h1>
