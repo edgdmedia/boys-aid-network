@@ -1,13 +1,25 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function CTA() {
   return (
     <section className="bg-red-600 relative overflow-hidden">
-      {/* Decorative Circles */}
-      <div className="absolute top-[-80px] left-[-40px] w-72 h-72 rounded-full bg-white/5 pointer-events-none" />
-      <div className="absolute bottom-[-100px] right-[-30px] w-80 h-80 rounded-full bg-white/5 pointer-events-none" />
+      {/* Faint Background Image Texture */}
+      <div className="absolute inset-0 select-none pointer-events-none opacity-10">
+        <Image
+          src="/images/AIN30-1-1024x684.jpeg"
+          alt="CTA background texture"
+          fill
+          sizes="100vw"
+          className="object-cover object-center filter grayscale"
+        />
+      </div>
 
-      <div className="relative max-w-4xl mx-auto px-6 py-16 md:py-20 text-center">
+      {/* Decorative Circles */}
+      <div className="absolute top-[-80px] left-[-40px] w-72 h-72 rounded-full bg-white/5 pointer-events-none z-10" />
+      <div className="absolute bottom-[-100px] right-[-30px] w-80 h-80 rounded-full bg-white/5 pointer-events-none z-10" />
+
+      <div className="relative max-w-4xl mx-auto px-6 py-16 md:py-20 text-center z-10">
         <h2 className="text-white font-display font-black text-2xl sm:text-3xl md:text-[36px] leading-tight tracking-tight">
           Support a Boy, Shape a Future
         </h2>

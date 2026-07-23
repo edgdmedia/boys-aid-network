@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Play, ArrowRight, X, Heart, Shield, Users, GraduationCap, Scale, Megaphone } from 'lucide-react';
@@ -17,15 +17,51 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Megaphone: Megaphone,
 };
 
+const slideshowImages = [
+  '/images/AIN30-1-1024x684.jpeg',
+  '/images/AIN6-1-1024x684.jpeg',
+  '/images/AIN116-1024x684.jpeg',
+];
+
 export default function Home() {
   const [videoOpen, setVideoOpen] = useState(false);
+  const [slideIdx, setSlideIdx] = useState(0);
+
+  // Background slideshow logic
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSlideIdx((prev) => (prev + 1) % slideshowImages.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="animate-ban-fade">
       {/* Hero Section */}
       <section className="relative bg-navy-800 overflow-hidden min-h-[500px] flex items-center">
+        {/* Ken Burns Slideshow Background */}
+        {slideshowImages.map((src, idx) => (
+          <div
+            key={src}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out select-none pointer-events-none ${
+              idx === slideIdx ? 'opacity-30 z-0' : 'opacity-0 z-0'
+            }`}
+          >
+            <Image
+              src={src}
+              alt="Slideshow Background"
+              fill
+              priority={idx === 0}
+              className="object-cover object-center animate-kenburns"
+            />
+          </div>
+        ))}
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-800/85 to-navy-900/95 z-0" />
+
         {/* Glow decoration */}
-        <div className="absolute top-[-120px] right-[-120px] w-[420px] h-[420px] rounded-full bg-radial from-red-600/35 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute top-[-120px] right-[-120px] w-[420px] h-[420px] rounded-full bg-radial from-red-600/35 to-transparent blur-3xl pointer-events-none z-10" />
 
         <div className="max-w-6xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-12 items-center relative z-10">
           <div className="md:col-span-7 flex flex-col items-start text-left">
@@ -204,7 +240,7 @@ export default function Home() {
               return (
                 <div
                   key={prog.id}
-                  className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md flex flex-col transition-all hover:-translate-y-1.5 hover:shadow-xl group"
+                  className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md flex flex-col justify-between transition-all hover:-translate-y-1.5 hover:shadow-xl group"
                 >
                   <div className="h-44 relative">
                     <Image
@@ -225,12 +261,12 @@ export default function Home() {
                       <h3 className="font-display font-extrabold text-[18px] sm:text-[19px] text-navy-800 leading-snug mb-3">
                         {prog.title}
                       </h3>
-                      <p className="text-[14.5px] leading-relaxed text-gray-600 mb-5">
+                      <p className="text-[14.5px] leading-relaxed text-gray-600 mb-5 line-clamp-3">
                         {prog.body}
                       </p>
                     </div>
                     <Link
-                      href={`/programs#${prog.id}`}
+                      href={`/programs/${prog.id}`}
                       className="inline-flex items-center gap-1.5 font-display font-bold text-[12.5px] tracking-wide text-red-600 hover:text-red-700 uppercase"
                     >
                       Learn more <ArrowRight className="w-4 h-4" />
@@ -267,7 +303,7 @@ export default function Home() {
             {blogPosts.slice(0, 1).map((post) => (
               <Link
                 key={post.slug}
-                href={`/impact`}
+                href={`/blog/${post.slug}`}
                 className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md flex flex-col hover:-translate-y-1 hover:shadow-lg transition-all"
               >
                 <div className="h-44 relative">
@@ -295,7 +331,7 @@ export default function Home() {
 
             {/* Other two cards from static stories highlights matching prototype */}
             <Link
-              href="/impact#boys-against-crime-campaign"
+              href="/impact/boys-against-crime-campaign"
               className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md flex flex-col hover:-translate-y-1 hover:shadow-lg transition-all"
             >
               <div className="h-44 relative">
@@ -321,7 +357,7 @@ export default function Home() {
             </Link>
 
             <Link
-              href="/impact#boys-bootcamp-2022"
+              href="/impact/boys-bootcamp-2022"
               className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md flex flex-col hover:-translate-y-1 hover:shadow-lg transition-all"
             >
               <div className="h-44 relative">
