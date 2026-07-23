@@ -65,15 +65,8 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Fallback base headings style, allowing overrides via classes */
+/* Default headings get Navy 800 unless overridden by utility classes */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  color: inherit; /* Inherit color by default so text-white etc. work flawlessly */
-}
-
-/* Default headings outside specific containers get Navy 800 */
-body :not(footer):not(header):not(.bg-navy-800):not(.bg-navy-900):not(.bg-red-600) > h1,
-body :not(footer):not(header):not(.bg-navy-800):not(.bg-navy-900):not(.bg-red-600) > h2,
-body :not(footer):not(header):not(.bg-navy-800):not(.bg-navy-900):not(.bg-red-600) > h3 {
   color: var(--color-navy-800);
 }
