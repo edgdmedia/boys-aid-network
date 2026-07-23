@@ -136,8 +136,8 @@ export default function Support() {
                   Email Us to Partner <ArrowRight className="w-4 h-4" />
                 </a>
 
-                {/* Additional Image added to balance the height */}
-                <div className="relative h-56 w-full rounded-2xl overflow-hidden shadow-inner select-none border border-white/10">
+                {/* Additional Image added to balance the height (hidden on mobile, visible on desktop) */}
+                <div className="relative h-56 w-full rounded-2xl overflow-hidden shadow-inner select-none border border-white/10 hidden lg:block">
                   <Image
                     src="/images/AIN60-1-1024x684.jpeg"
                     alt="Boys Bootcamp session"
