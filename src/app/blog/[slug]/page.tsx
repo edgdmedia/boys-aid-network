@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { blogPosts } from '@/data/content';
-import PageHero from '@/components/PageHero';
 import Share from '@/components/Share';
 import CTA from '@/components/CTA';
 
@@ -30,31 +29,56 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="animate-ban-fade">
-      {/* Page Hero using post's featured image as background with metadata inside the banner */}
-      <PageHero
-        eyebrow="Blog Article"
-        title={post.title}
-        subtitle={post.summary}
-        img={post.img}
-        backLink="/impact"
-        backText="All Articles"
-      >
-        <div className="flex items-center justify-center gap-4 text-[13px] text-white/75 mt-3.5 font-semibold">
-          <span className="flex items-center gap-1.5">
-            <Calendar className="w-4 h-4 text-red-500" />
-            {post.date}
-          </span>
-          <span className="flex items-center gap-1.5">
-            <User className="w-4 h-4 text-red-500" />
-            {post.author}
-          </span>
+      {/* Left-aligned Article Header with Background Image */}
+      <section className="bg-navy-800 text-white py-16 md:py-24 relative overflow-hidden select-none">
+        {/* Background Featured Image */}
+        <div className="absolute inset-0 select-none pointer-events-none">
+          <Image
+            src={post.img}
+            alt={post.title}
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-20 saturate-[0.6]"
+            priority
+          />
         </div>
-      </PageHero>
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-800/80 to-navy-900/95" />
+
+        <div className="max-w-4xl mx-auto px-6 flex flex-col items-start relative z-10">
+          <Link
+            href="/impact"
+            className="inline-flex items-center gap-1.5 font-display font-bold text-[12px] uppercase tracking-wider text-red-500 hover:text-red-400 mb-8 transition-colors animate-fade-in"
+          >
+            <ArrowLeft className="w-4 h-4" /> All Articles
+          </Link>
+          <div className="inline-flex items-center gap-2 font-display font-bold tracking-widest uppercase text-red-500 text-[12.5px] mb-5">
+            <span className="w-6 h-[2px] bg-red-500 inline-block" />
+            Blog Post
+          </div>
+          <h1 className="font-display font-black text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight max-w-3xl">
+            {post.title}
+          </h1>
+
+          {/* Meta section placed directly after the title inside the banner */}
+          <div className="flex items-center gap-4 text-[12.5px] text-white/70 mt-5 font-semibold">
+            <span className="flex items-center gap-1.5">
+              <Calendar className="w-4 h-4 text-red-500" />
+              {post.date}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <User className="w-4 h-4 text-red-500" />
+              {post.author}
+            </span>
+          </div>
+        </div>
+      </section>
 
       {/* Article Body */}
       <article className="bg-white py-16">
         <div className="max-w-3xl mx-auto px-6">
-          {/* Featured Image */}
+          {/* Featured Image inside Article */}
           <div className="relative h-64 sm:h-[400px] w-full rounded-2xl overflow-hidden shadow-lg mb-10 select-none">
             <Image
               src={post.img}
@@ -102,18 +126,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             })}
           </div>
 
-          {/* Social Share Widget positioned after the content */}
-          <div className="w-full mt-6">
-            <Share title={post.title} />
-          </div>
-
-          {/* Bottom Back Navigation */}
-          <Link
-            href="/impact"
-            className="inline-flex items-center gap-1.5 font-display font-bold text-[12px] uppercase tracking-wider text-red-600 hover:text-red-700 mt-6 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" /> Back to Impact &amp; Blog
-          </Link>
+          {/* Share section placed directly after the content */}
+          <Share title={post.title} />
         </div>
       </article>
 
