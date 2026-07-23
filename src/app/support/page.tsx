@@ -35,33 +35,33 @@ export default function Support() {
                 </p>
 
                 <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden font-display">
-                  <div className="flex justify-between items-center px-5 py-4 border-b border-white/5">
-                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase">Account Name</span>
-                    <span className="font-extrabold text-[13.5px] text-right max-w-[200px]">{bankDetails.accountName}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4 border-b border-white/5">
+                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Account Name</span>
+                    <span className="font-extrabold text-[13.5px] text-left leading-normal">{bankDetails.accountName}</span>
                   </div>
-                  <div className="flex justify-between items-center px-5 py-4 border-b border-white/5">
-                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase">Bank Name</span>
-                    <span className="font-extrabold text-[15px]">{bankDetails.bankName}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4 border-b border-white/5">
+                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Bank Name</span>
+                    <span className="font-extrabold text-[15px] text-left">{bankDetails.bankName}</span>
                   </div>
-                  <div className="flex justify-between items-center px-5 py-4 border-b border-white/5">
-                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase">Naira Account</span>
-                    <span className="font-mono font-extrabold text-[16px] text-red-400">{bankDetails.nairaAccount}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4 border-b border-white/5">
+                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Naira Account</span>
+                    <span className="font-mono font-extrabold text-[16px] text-red-400 text-left">{bankDetails.nairaAccount}</span>
                   </div>
-                  <div className="flex justify-between items-center px-5 py-4 border-b border-white/5">
-                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase">Dollar Account</span>
-                    <span className="font-mono font-extrabold text-[16px]">{bankDetails.dollarAccount}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4 border-b border-white/5">
+                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Dollar Account</span>
+                    <span className="font-mono font-extrabold text-[16px] text-left">{bankDetails.dollarAccount}</span>
                   </div>
-                  <div className="flex justify-between items-center px-5 py-4 border-b border-white/5">
-                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase">Pound Account</span>
-                    <span className="font-mono font-extrabold text-[16px]">{bankDetails.poundAccount}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4 border-b border-white/5">
+                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Pound Account</span>
+                    <span className="font-mono font-extrabold text-[16px] text-left">{bankDetails.poundAccount}</span>
                   </div>
-                  <div className="flex justify-between items-center px-5 py-4 border-b border-white/5">
-                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase">Swift Code</span>
-                    <span className="font-mono font-extrabold text-[15px]">{bankDetails.swiftCode}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4 border-b border-white/5">
+                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Swift Code</span>
+                    <span className="font-mono font-extrabold text-[15px] text-left">{bankDetails.swiftCode}</span>
                   </div>
-                  <div className="flex justify-between items-center px-5 py-4">
-                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase">Sort Code</span>
-                    <span className="font-mono font-extrabold text-[15px]">{bankDetails.sortCode}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-4">
+                    <span className="text-[11px] font-bold text-white/50 tracking-wider uppercase sm:w-36 sm:shrink-0">Sort Code</span>
+                    <span className="font-mono font-extrabold text-[15px] text-left">{bankDetails.sortCode}</span>
                   </div>
                 </div>
               </div>
