@@ -430,7 +430,7 @@ export default function Home() {
       {videoOpen && (
         <div
           onClick={() => setVideoOpen(false)}
-          className="fixed inset-0 z-50 bg-navy-950/85 backdrop-blur-sm flex items-center justify-center p-6 animate-ban-fade"
+          className="fixed inset-0 z-50 bg-navy-950/85 backdrop-blur-sm flex items-center justify-center p-6"
         >
           <div
             onClick={(e) => e.stopPropagation()}
