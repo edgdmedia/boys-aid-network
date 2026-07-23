@@ -1,32 +1,48 @@
-# Cloudflare Pages Auto-Deploy Setup Guide (Method 1a)
+# Cloudflare Workers Static Assets Deployment Guide (Unified Dashboard)
 
-This guide outlines the steps to connect your GitHub repository directly to Cloudflare Pages. This method does not require setting up API keys, account tokens, or GitHub secrets.
+This guide outlines the steps to deploy your Next.js static export website using Cloudflare's unified dashboard **Workers Git Integration** and **Workers Static Assets**.
 
 ---
 
-## Step 1: Connect your Repository to Cloudflare Pages
+## Step 1: Project Configuration
+
+To enable static hosting on the unified Workers platform, the project has been pre-configured with two files:
+
+1. **`next.config.ts`**:
+   Configured for static HTML exports:
+   ```typescript
+   const nextConfig: NextConfig = {
+     output: 'export',
+     images: {
+       unoptimized: true,
+     },
+   };
+   ```
+
+2. **`wrangler.toml`**:
+   Tells Cloudflare Wrangler to upload the static `./out` output directory directly to the edge, without installing a custom worker script:
+   ```toml
+   name = "boys-aid-network"
+   compatibility_date = "2024-09-23"
+
+   [assets]
+   directory = "./out"
+   ```
+
+---
+
+## Step 2: Cloudflare Dashboard Setup
 
 1. Log in to your [Cloudflare Dashboard](https://dash.cloudflare.com/).
 2. On the left sidebar, click on **Workers & Pages**.
-3. Click the **Create Application** button.
-4. Select the **Pages** tab and click **Connect to Git**.
-5. Select **GitHub** and authorize Cloudflare to access your GitHub account (you only need to do this authorization step once).
-6. Under the repository list, select **`boys-aid-network`** (or the name of your repository) and click **Begin setup**.
-
----
-
-## Step 2: Configure Build Settings
-
-In the configuration screen, set the following parameters:
-
-- **Project Name:** `boys-aid-network` (or your preferred site name)
-- **Production branch:** `main`
-- **Framework preset:** Select **`Next.js (Static HTML Export)`**
-- **Build command:** `npm run build`
-- **Build output directory:** `out`
-- **Node.js version (Recommended):** Scroll down to **Environment variables** under build settings, add a variable named `NODE_VERSION` with value `20`.
-
-Click the **Save and Deploy** button.
+3. Click the blue **Create Application** button.
+4. Click **Connect to Git** (under the unified Workers screen).
+5. Authorize access to your GitHub account and select the **`boys-aid-network`** repository.
+6. Verify the build settings configuration:
+   - **Build command:** `npm run build`
+   - **Deploy command:** `npx wrangler deploy`
+   - **Root directory:** `/`
+7. Click **Save and Deploy**.
 
 ---
 
@@ -34,11 +50,11 @@ Click the **Save and Deploy** button.
 
 Your automated deployment pipeline is now active. The workflow is:
 
-1. Create a feature branch or work directly in **`development`**:
+1. Work and push changes to the **`development`** branch:
    ```bash
    git checkout development
    # Make changes and commit
-   git commit -am "feat: update homepage details"
+   git commit -am "feat: update design highlights"
    git push origin development
    ```
 2. When you are ready to publish changes to production, merge your progress into the **`main`** branch:
@@ -47,4 +63,4 @@ Your automated deployment pipeline is now active. The workflow is:
    git merge development
    git push origin main
    ```
-3. Cloudflare will automatically detect the push to `main`, compile your Next.js app in the cloud, and deploy it to your custom subdomain (e.g. `boys-aid-network.pages.dev`).
+3. Cloudflare will automatically detect the push to `main`, compile your Next.js app to `./out`, and run `npx wrangler deploy` to sync the static assets to your worker domain.

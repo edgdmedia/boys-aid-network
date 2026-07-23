@@ -2,7 +2,6 @@
 
 @import "tailwindcss";
 
-
 @theme {
   --color-navy-950: #070a2b;
   --color-navy-900: #0b0f42;
@@ -28,6 +27,7 @@
   --spacing-110: 27.5rem;   /* 440px */
 
   --animate-ban-fade: banFade 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-kenburns: kenburns 16s ease-in-out infinite;
 
   @keyframes banFade {
     from {
@@ -37,6 +37,18 @@
     to {
       opacity: 1;
       transform: none;
+    }
+  }
+
+  @keyframes kenburns {
+    0% {
+      transform: scale(1) translate(0, 0);
+    }
+    50% {
+      transform: scale(1.1) translate(-1%, -0.5%);
+    }
+    100% {
+      transform: scale(1) translate(0, 0);
     }
   }
 }
@@ -53,7 +65,7 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Default headings font family */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  color: var(--color-navy-800);
 }

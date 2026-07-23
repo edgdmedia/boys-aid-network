@@ -1,0 +1,6 @@
+name = "boys-aid-network"
+compatibility_date = "2024-09-23"
+
+[assets]
+directory = "./out"
+
