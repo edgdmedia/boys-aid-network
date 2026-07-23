@@ -36,7 +36,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="animate-ban-fade">
+    <>
+      <div className="animate-ban-fade">
       {/* Hero Section */}
       <section className="relative bg-navy-800 overflow-hidden min-h-[500px] flex items-center">
         {/* Ken Burns Slideshow Background */}
@@ -423,12 +424,13 @@ export default function Home() {
 
       {/* Bottom CTA Block */}
       <CTA />
+    </div>
 
       {/* YouTube Video Modal */}
       {videoOpen && (
         <div
           onClick={() => setVideoOpen(false)}
-          className="fixed inset-0 z-50 bg-navy-950/85 backdrop-blur-sm flex items-center justify-center p-6 animate-ban-fade"
+          className="fixed inset-0 z-50 bg-navy-950/85 backdrop-blur-sm flex items-center justify-center p-6"
         >
           <div
             onClick={(e) => e.stopPropagation()}
@@ -453,6 +455,6 @@ export default function Home() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

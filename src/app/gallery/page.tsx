@@ -28,7 +28,8 @@ export default function Gallery() {
   };
 
   return (
-    <div className="animate-ban-fade">
+    <>
+      <div className="animate-ban-fade">
       {/* Page Hero */}
       <PageHero
         eyebrow="Gallery"
@@ -60,12 +61,13 @@ export default function Gallery() {
       </section>
 
       <CTA />
+    </div>
 
       {/* Interactive Lightbox Overlay */}
       {lightboxIdx !== null && (
         <div
           onClick={closeLightbox}
-          className="fixed inset-0 z-50 bg-navy-950/95 flex items-center justify-center p-6 animate-ban-fade"
+          className="fixed inset-0 z-50 bg-navy-950/95 flex items-center justify-center p-6"
         >
           {/* Close button */}
           <button
@@ -106,6 +108,6 @@ export default function Gallery() {
           </button>
         </div>
       )}
-    </div>
+    </>
   );
 }
