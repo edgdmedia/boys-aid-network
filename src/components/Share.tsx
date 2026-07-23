@@ -51,7 +51,7 @@ export default function Share({ title }: ShareProps) {
   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + shareUrl)}`;
 
   return (
-    <div className="flex flex-wrap items-center gap-3.5 border-t border-b border-gray-100 py-4.5 my-8">
+    <div className="flex flex-wrap items-center gap-3.5 border-t border-b border-gray-100 py-4.5 my-2">
       <span className="flex items-center gap-1.5 font-display font-bold text-[13px] text-navy-800 uppercase tracking-wider">
         <Share2 className="w-4 h-4 text-red-600" /> Share this page
       </span>

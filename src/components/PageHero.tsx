@@ -36,7 +36,7 @@ export default function PageHero({ eyebrow, title, subtitle, img, backLink, back
             href={backLink}
             className="inline-flex items-center gap-1.5 font-display font-bold text-[12.5px] uppercase tracking-[0.18em] text-red-500 hover:text-red-400 mb-4.5 transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" /> Back to {backText}
+            <ArrowLeft className="w-4 h-4" /> {backText}
           </Link>
         ) : (
           <div className="font-display font-bold tracking-[0.18em] uppercase text-red-500 text-[12.5px] mb-4.5">

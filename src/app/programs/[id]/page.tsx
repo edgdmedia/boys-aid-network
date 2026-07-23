@@ -92,15 +92,7 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
                 <Share title={prog.title} />
               </div>
 
-              {/* Bottom Back Navigation */}
-              <Link
-                href="/programs"
-                className="inline-flex items-center gap-1.5 font-display font-bold text-[12px] uppercase tracking-wider text-red-600 hover:text-red-700 transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" /> Back to All Programs
-              </Link>
             </div>
-
           </div>
         </div>
       </article>
