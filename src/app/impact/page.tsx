@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, ArrowRight } from 'lucide-react';
@@ -5,8 +8,28 @@ import { blogPosts, impactStories } from '@/data/content';
 import PageHero from '@/components/PageHero';
 import CTA from '@/components/CTA';
 
+// Helper to parse date strings for sorting
+const parseDate = (dateStr: string) => {
+  if (dateStr === 'Active' || !dateStr) return new Date('2026-07-23').getTime();
+  const parsed = Date.parse(dateStr);
+  if (!isNaN(parsed)) return parsed;
+
+  // Custom parser for "Month Year" format e.g. "June 2022"
+  const parts = dateStr.split(' ');
+  if (parts.length === 2) {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const monthIdx = months.indexOf(parts[0]);
+    if (monthIdx !== -1) {
+      return new Date(parseInt(parts[1]), monthIdx, 1).getTime();
+    }
+  }
+  return 0;
+};
+
 export default function Impact() {
-  // Combine impact stories and blog posts into a single unified feed
+  const [activeFilter, setActiveFilter] = useState<'all' | 'impact' | 'blog'>('all');
+
+  // Combine and sort feed by date (newest first)
   const combinedFeed = [
     ...impactStories.map((story) => ({
       id: story.id,
@@ -18,6 +41,7 @@ export default function Impact() {
       body: story.body,
       link: `/impact/${story.id}`,
       actionText: 'Read full story',
+      type: 'impact',
     })),
     ...blogPosts.map((post) => ({
       id: post.slug,
@@ -29,8 +53,15 @@ export default function Impact() {
       body: post.summary,
       link: `/blog/${post.slug}`,
       actionText: 'Read full article',
+      type: 'blog',
     })),
-  ];
+  ].sort((a, b) => parseDate(b.date) - parseDate(a.date));
+
+  // Filter feed items
+  const filteredFeed = combinedFeed.filter((item) => {
+    if (activeFilter === 'all') return true;
+    return item.type === activeFilter;
+  });
 
   return (
     <div className="animate-ban-fade">
@@ -46,19 +77,43 @@ export default function Impact() {
       <div className="bg-white py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6">
           
-          {/* Header section for unified feed */}
-          <div className="border-l-4 border-red-600 pl-4 mb-10">
-            <h2 className="font-display font-extrabold text-2xl md:text-3xl text-navy-800 tracking-tight">
-              Updates, Articles &amp; Impact
-            </h2>
-            <p className="text-gray-500 text-[14.5px] mt-1">
-               grassroots campaigns, bootcamps, and insights on modern boychild development.
-            </p>
+          {/* Unified Filter Pills */}
+          <div className="flex flex-wrap items-center gap-3.5 mb-12 justify-center sm:justify-start">
+            <button
+              onClick={() => setActiveFilter('all')}
+              className={`px-5.5 py-2.5 rounded-xl font-display font-bold text-[12.5px] uppercase tracking-wider transition-all border cursor-pointer ${
+                activeFilter === 'all'
+                  ? 'bg-navy-800 text-white border-navy-800 shadow-md scale-[1.02]'
+                  : 'bg-gray-50 hover:bg-gray-100 text-navy-800 border-gray-200'
+              }`}
+            >
+              All Updates
+            </button>
+            <button
+              onClick={() => setActiveFilter('impact')}
+              className={`px-5.5 py-2.5 rounded-xl font-display font-bold text-[12.5px] uppercase tracking-wider transition-all border cursor-pointer ${
+                activeFilter === 'impact'
+                  ? 'bg-red-600 text-white border-red-600 shadow-md scale-[1.02]'
+                  : 'bg-gray-50 hover:bg-gray-100 text-navy-800 border-gray-200'
+              }`}
+            >
+              Impact Stories
+            </button>
+            <button
+              onClick={() => setActiveFilter('blog')}
+              className={`px-5.5 py-2.5 rounded-xl font-display font-bold text-[12.5px] uppercase tracking-wider transition-all border cursor-pointer ${
+                activeFilter === 'blog'
+                  ? 'bg-navy-800 text-white border-navy-800 shadow-md scale-[1.02]'
+                  : 'bg-gray-50 hover:bg-gray-100 text-navy-800 border-gray-200'
+              }`}
+            >
+              Articles
+            </button>
           </div>
 
-          {/* Combined Grid */}
+          {/* Grid Feed */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {combinedFeed.map((item) => (
+            {filteredFeed.map((item) => (
               <div
                 key={item.id}
                 className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-xl transition-all group"
